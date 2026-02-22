@@ -1,5 +1,5 @@
 # tuibaozi-calculator
-calculate tuibaozi probability and expect return
+calculate tuibaozi probability and expect return\n
 推豹子规则如下：
 1.扑克牌1~8共32张，一个庄家M，三个闲门X Y Z，下注者若干P1...Pn
 2.游戏开始时，下注者可以选择以下操作；下注方式有（1）下注任意闲门X Y Z任意金额；（2）下注“二门”任意金额；（3）下注“黑子”任意金额；（4）不下注；
