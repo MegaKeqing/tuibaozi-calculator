@@ -263,8 +263,8 @@ async function startCalculation() {
         
         // 更新显示
         document.getElementById('totalCards').textContent = totalCards;
-        document.getElementById('theoryLeopard').textContent = 
-            (calcTheoryLeopard(counts, totalCards) * 100).toFixed(1) + '%';
+        // document.getElementById('theoryLeopard').textContent = 
+        //     (calcTheoryLeopard(counts, totalCards) * 100).toFixed(1) + '%';
         document.getElementById('calcTime').textContent = calcTime + 's';
         
         // 闲门结果
@@ -350,6 +350,40 @@ function toggleDetails() {
     } else {
         details.classList.add('show');
         btn.textContent = '隐藏三门详情 ▲';
+    }
+}
+
+// 切换二维码显示
+function toggleQR() {
+    const placeholder = document.getElementById('qrPlaceholder');
+    const image = document.getElementById('qrImage');
+    
+    if (image.style.display === 'none') {
+        placeholder.style.display = 'none';
+        image.style.display = 'block';
+        
+        // 添加提示文字
+        let hint = document.querySelector('.qr-hint');
+        if (!hint) {
+            hint = document.createElement('div');
+            hint.className = 'qr-hint show';
+            hint.innerHTML = '长按识别二维码';
+            image.parentNode.appendChild(hint);
+        } else {
+            hint.classList.add('show');
+        }
+        
+        // 3秒后自动隐藏（可选）
+        // setTimeout(() => {
+        //     placeholder.style.display = 'block';
+        //     image.style.display = 'none';
+        //     hint.classList.remove('show');
+        // }, 10000);
+    } else {
+        placeholder.style.display = 'block';
+        image.style.display = 'none';
+        const hint = document.querySelector('.qr-hint');
+        if (hint) hint.classList.remove('show');
     }
 }
 

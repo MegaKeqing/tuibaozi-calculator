@@ -282,6 +282,73 @@
             font-size: 1.1em;
             font-weight: bold;
         }
+
+        .donate-card {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .donate-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .qr-container {
+            background: #fff;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 0 auto;
+            max-width: 200px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .qr-container:active {
+            transform: scale(0.98);
+        }
+        
+        .qr-placeholder {
+            text-align: center;
+            color: #1677ff;
+            padding: 20px 10px;
+        }
+        
+        .qr-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .qr-image {
+            width: 100%;
+            max-width: 170px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+        }
+        
+        .qr-hint {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.8em;
+            color: #a8d4ff;
+            display: none;
+        }
+        
+        .qr-hint.show {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -348,7 +415,7 @@
         <div class="card results" id="resultsCard">
             <div class="card-title">📊 计算结果</div>
             
-            <div class="stats-grid">
+            <!-- <div class="stats-grid">
                 <div class="stat-box">
                     <div class="stat-label">总牌数</div>
                     <div class="stat-value" id="totalCards">32</div>
@@ -360,6 +427,16 @@
                 <div class="stat-box">
                     <div class="stat-label">计算用时</div>
                     <div class="stat-value" id="calcTime">0.5s</div>
+                </div>
+            </div> -->
+            <div class="stats-grid" style="grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="stat-box" style="padding: 15px;">
+                    <div class="stat-label">总牌数</div>
+                    <div class="stat-value" style="font-size: 1.5em;" id="totalCards">32</div>
+                </div>
+                <div class="stat-box" style="padding: 15px;">
+                    <div class="stat-label">计算用时</div>
+                    <div class="stat-value" style="font-size: 1.5em;" id="calcTime">0.26s</div>
                 </div>
             </div>
             
@@ -419,6 +496,7 @@
                 2. 设置模拟次数（建议10万-100万次）<br>
                 3. 点击"开始计算"获取胜率和期望收益<br>
                 4. 根据期望收益选择最优下注策略<br>
+                5. 成为稻谷田赌神<br>
                 <br>
                 <span style="color: #ffd700;">提示：可点击浏览器"添加到主屏幕"像APP一样使用</span>
             </div>
@@ -428,5 +506,28 @@
     <button class="install-btn" id="installBtn" onclick="installPWA()">📲 安装应用</button>
     
     <script src="app.js"></script>
+
+    <!-- 打赏区域 -->
+    <div class="card donate-card" style="margin-top: 20px; background: linear-gradient(135deg, #1677ff 0%, #0056d6 100%);">
+        <div class="card-title" style="color: #fff;">🧋 支持开发者</div>
+        <div style="text-align: center; color: #e6f2ff; font-size: 0.9em; line-height: 1.6; margin-bottom: 15px;">
+            如果这款工具帮你赢得了筹码<br>
+            欢迎打赏一杯奶茶 🧋
+        </div>
+        
+        <div class="qr-container" onclick="toggleQR()">
+            <div class="qr-placeholder" id="qrPlaceholder">
+                <div class="qr-icon">📱</div>
+                <div>点击显示支付宝收款码</div>
+                <div style="font-size: 0.75em; opacity: 0.8; margin-top: 5px;">安全支付 · 自愿打赏</div>
+            </div>
+            <img src="alipay-qr.png" alt="支付宝收款码" class="qr-image" id="qrImage" style="display: none;">
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px; font-size: 0.8em; color: #a8d4ff;">
+            打赏金额随意，心意最重要 ❤️
+        </div>
+    </div>
+        
 </body>
 </html>
